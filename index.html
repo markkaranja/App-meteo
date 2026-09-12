@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>App-meteo</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/script.js" defer></script>
+</head>
+<body>
+    <header>    
+            <h1>Quel temps fait-il aujourd'hui ?</h1>
+            <p>Météo en temps réel pour chaque ville</p>
+    </header>
+
+    <main>
+        <section class="research">
+
+            <form action="#" id="search-form">
+                <input id="city-input" type="text" required name="research" placeholder="Rechercher une ville">
+                <button type="submit">Recherche</button>
+            </form>
+
+        </section>
+
+        <section class="weather">
+            <h2 id="city-name"></h2>
+            <span id="badge">Météo actuelle</span>
+            <div class="temperature">
+                <p>22°C</p>
+            </div>
+            <div id="specifications">
+                <div id="Humidity">
+                    <p>Humidité</p>
+                </div>
+                <div id="Wind-Speed">
+                    <p>Vitesse de Vent</p>
+                </div>
+                <div id="Pressure">
+                    <p>Pression</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+</body>
+</html>
