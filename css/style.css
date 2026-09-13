@@ -1,0 +1,66 @@
+:root {
+  --bg-color: #f4f7f9;
+  --card-bg: #ffffff;
+  --metric-bg: #f8fafc;
+
+  --text-primary: #0f172a;
+  --text-secondary: #64748b;
+
+  --primary-blue: #3b82f6;
+  --badge-bg: #e0f2fe;
+  --badge-text: #2563eb;
+  --border-color: #e2e8f0;
+}
+
+.introduction {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-top: 3rem;
+  margin-bottom: 2rem;
+}
+
+.introduction h1{
+  font-size: 2.25rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+}
+
+.introduction p {
+  font-size: 1rem;
+  color: var(--text-secondary);
+}
+
+.research {
+    display: flex;
+    justify-content: center;
+}
+
+button{
+    border: 2px solid var(--border-color);
+    background-color: #2563eb;
+    border-radius: 5px;
+}
+
+button:hover{
+    transform: scale(1.05); /* Effet zoom au survol */
+}
+
+input {
+    border: 2px solid;
+    border-radius: 5px;
+}
+
+.weather {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centre tout le contenu horizontalement */
+    max-width: 600px;
+    margin: 2rem auto;
+    padding: auto;
+    background-color: var(--card-bg);
+    border-radius: 16px;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+}
