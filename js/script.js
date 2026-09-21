@@ -7,7 +7,7 @@ const pressureVal = document.querySelector("#pressure-val");
 
 const apiKey = "9e0a490997384b95986bb811ed3615db";
 
-searchForm.addEventListener("submit", (e) => {
+searchForm.addEventListener("submit", async (e) => {
     e.preventDefault()
 
     const cityName = cityInput.value.trim();
@@ -18,7 +18,9 @@ searchForm.addEventListener("submit", (e) => {
 
     cityInput.value = "";
 
-    getWeatherData(cityName);
+    const data = await getWeatherData(cityName);
+
+    displayWeatherInfo(data);
 })
 
 async function getWeatherData(city){
@@ -31,6 +33,12 @@ async function getWeatherData(city){
     }
 
     return await reponse.json();
+}
+
+function displayWeatherInfo(data) {
+    const { name: city, main: { temp: tempValue, humidity: humidityVal } } = data;
+
+    console.log(city, tempValue, humidityVal);
 }
 
  
