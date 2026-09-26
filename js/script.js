@@ -1,11 +1,12 @@
 const searchForm = document.querySelector("#search-form");
 const cityInput = document.querySelector("#city-input");
 
-const tempValue = document.querySelector("#temp-value");
-const humidityVal = document.querySelector("#humidity-val");
-const pressureVal = document.querySelector("#pressure-val");
+const tempElement = document.querySelector("#temp-value");
+const humidityElement = document.querySelector("#humidity-value");
+const pressureElement = document.querySelector("#pressure-value");
+const windElement = document.querySelector("#wind-value");
 
-const apiKey = "9e0a490997384b95986bb811ed3615db";
+// La clé API (pour des mesures de sécurité l'ancienne clé a été désactivé)
 
 searchForm.addEventListener("submit", async (e) => {
     e.preventDefault()
@@ -17,16 +18,23 @@ searchForm.addEventListener("submit", async (e) => {
     } 
 
     cityInput.value = "";
+    try{
+        const data = await getWeatherData(cityName);
+        displayWeatherInfo(data);
+    } catch(error){
+        alert(error.message)
+    }
 
-    const data = await getWeatherData(cityName);
 
-    displayWeatherInfo(data);
 })
 
 async function getWeatherData(city){
-    const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric&lang=fr`
+    const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${OPENWEATHER_API_KEY}&units=metric&lang=fr`
     const reponse = await fetch(apiUrl)
 
+    if (reponse.status === 401) {
+        throw new Error("Clé API non active pour le moment (Code 401)");
+    }
     if(!reponse.ok){
         // Envoie un message d'erreur si ils ne trouve pas la ville
         throw new Error("Ville non trouvé")
@@ -36,9 +44,12 @@ async function getWeatherData(city){
 }
 
 function displayWeatherInfo(data) {
-    const { name: city, main: { temp: tempValue, humidity: humidityVal } } = data;
+    const { name: city, main: {temp, humidity, pressure,} , wind : {speed} } = data;
 
-    console.log(city, tempValue, humidityVal);
+    if (tempElement) tempElement.textContent = `${Math.round(temp)}°C`;
+    if (humidityElement) humidityElement.textContent = `${humidity}%`;
+    if (pressureElement) pressureElement.textContent = `${pressure} hPa`;
+    if (windElement) windElement.textContent = `${Math.round(speed * 3.6)} km/h`;
 }
 
  
